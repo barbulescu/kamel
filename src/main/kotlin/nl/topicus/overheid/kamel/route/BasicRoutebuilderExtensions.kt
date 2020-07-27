@@ -1,5 +1,6 @@
 package nl.topicus.overheid.kamel.route
 
+import org.apache.camel.builder.EndpointConsumerBuilder
 import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.model.RouteDefinition
 
@@ -20,6 +21,12 @@ import org.apache.camel.model.RouteDefinition
  */
 fun RouteBuilder.from(uri: String, routeId: String = uri, toApply: RouteDefinition.() -> Unit): RouteDefinition {
     return from(uri)
+        .routeId(routeId)
+        .apply { toApply(this) }
+}
+
+fun RouteBuilder.from(consumerBuilder: EndpointConsumerBuilder, routeId: String = consumerBuilder.uri, toApply: RouteDefinition.() -> Unit): RouteDefinition {
+    return from(consumerBuilder)
         .routeId(routeId)
         .apply { toApply(this) }
 }

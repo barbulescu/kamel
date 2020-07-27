@@ -53,7 +53,7 @@ fun ChoiceDefinition.given(predicate: Predicate, toApply: ChoiceDefinition.() ->
  *
  * @param toApply lambda to populate the actions to be executed when the predicate evaluates to `true`
  */
-fun ChoiceDefinition.otherwise(toApply: ChoiceDefinition.() -> Unit): ChoiceDefinition {
+infix fun ChoiceDefinition.otherwise(toApply: ChoiceDefinition.() -> Unit): ChoiceDefinition {
     return otherwise()
         .apply(toApply)
         .endChoice()
