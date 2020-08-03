@@ -34,19 +34,11 @@ fun RouteDefinition.choice(toApply: ChoiceDefinition.() -> Unit): ProcessorDefin
  * @see given
  * @see ChoiceDefinition.when
  */
-private fun ChoiceDefinition.`when`(predicate: Predicate, toApply: ChoiceDefinition.() -> Unit): ChoiceDefinition {
+fun ChoiceDefinition.`when`(predicate: Predicate, toApply: ChoiceDefinition.() -> Unit): ChoiceDefinition {
     return `when`(predicate)
         .apply(toApply)
         .endChoice()
 }
-
-/**
- * Sets the predicate for the `when` node, and defines the various actions to take if given predicate evaluates to `true`.
- *
- * @param predicate Predicate to consider before executing the defined actions
- * @param toApply lambda to populate the actions to be executed when the predicate evaluates to `true`
- */
-fun ChoiceDefinition.given(predicate: Predicate, toApply: ChoiceDefinition.() -> Unit): ChoiceDefinition = `when`(predicate, toApply)
 
 /**
  * Defines the various actions to take if none of the predicates in the [ChoiceDefinition] evaluated to `true`.
